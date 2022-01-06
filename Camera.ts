@@ -14,7 +14,7 @@ export class Camera{
         this.offsetY = y;
         this.game = game;
     }
-
+    // Updates camera offset to match its tracking target, if enabled and defined. Run every frame for consistent camera tracking.
     updateToTarget(){
         if(this.targetCenter) {
             this.offsetX = this.target.getX();

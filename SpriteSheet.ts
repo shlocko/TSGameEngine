@@ -11,6 +11,17 @@ export class SpriteSheet{
         this.height = height;
 
     }
-
+    // Returns the coordinates within the Sprite Sheet of a given index, intended for internal engine use only, but can be used to manually call canvas draw calls on the sprite sheet
+    index(index: number){
+        let x, y: number;
+        if(index >= this.width){
+            x = (index % this.width);
+            y = Math.floor(index/this.width);
+        }else{
+            x = index;
+            y = 0;
+        }
+        return {x: x, y: y};
+    }
 
 }
