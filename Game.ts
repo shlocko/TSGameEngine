@@ -46,29 +46,27 @@ export class Game{
 
     }
 
-    drawSprite(sprite: Sprite){
+    sprite(sprite: Sprite){
         this.ctx.drawImage(sprite.img, this.canvas.width/2-sprite.img.width/2, this.canvas.height/2-sprite.img.height/2);
     }
 
-    drawSheet(index: number, xC: number, yC: number){
+    sSprite(index: number, xC: number, yC: number){
 
         if(this.sheet != null){
-            let {x, y} = this.spriteCoordFromIndex(index);
+            let {x, y} = this.sheetCoord(index);
             this.ctx.drawImage(this.sheet.img,x*this.sheet.spriteSize,y*this.sheet.spriteSize, this.sheet.spriteSize, this.sheet.spriteSize, xC-this.camera.offsetX, yC-this.camera.offsetY, this.sheet.spriteSize,this.sheet.spriteSize);
         }else{
             console.log("no sheet");
         }
     }
-    spriteCoordFromIndex(index: number){
+    sheetCoord(index: number){
         let x, y: number;
         if(index >= this.sheet.width){
             x = (index % this.sheet.width);
             y = Math.floor(index/this.sheet.width);
-            //console.log(xS + " " + yS);
         }else{
             x = index;
             y = 0;
-            //console.log(xS + " " + yS);
         }
         return {x: x, y: y};
     }
