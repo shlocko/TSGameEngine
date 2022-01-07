@@ -48,7 +48,11 @@ export class Game{
     }
     // Draws a Sprite object to the screen at its stored position
     sprite(sprite: Sprite){
-        this.ctx.drawImage(sprite.img, this.canvas.width/2-sprite.img.width/2, this.canvas.height/2-sprite.img.height/2);
+        if(sprite.type == "IMAGE") {
+            this.ctx.drawImage(sprite.img, this.canvas.width / 2 - sprite.img.width / 2, this.canvas.height / 2 - sprite.img.height / 2);
+        }else if(sprite.type == "SHEET"){
+            this.sSprite(sprite.index, sprite.getX(), sprite.getY());
+        }
     }
     // Draws the sprite of the given index from the sprite sheet
     sSprite(index: number, xC: number, yC: number){
