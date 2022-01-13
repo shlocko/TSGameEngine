@@ -1,4 +1,4 @@
-import { Game } from './Game';
+import { Game} from './Game';
 import { Position } from "./Position";
 import { Sprite } from "./Sprite";
 import { SpriteSheet } from "./SpriteSheet";

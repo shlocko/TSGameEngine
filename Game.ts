@@ -6,10 +6,9 @@ export class Game{
     private lastRender: number;
     sheet: SpriteSheet;
     camera: Camera;
-    defaultScreen: GameScreen;
+    screens = {};
     screen: GameScreen;
-    input = {
-    }
+    count: number = 0;
 
     constructor(canvas: HTMLCanvasElement) {
         this.canvas = canvas;
@@ -20,26 +19,12 @@ export class Game{
         //this.canvas.width = 1344;
         //this.canvas.height = 768;
         this.camera = new Camera(0, 0, this);
-        this.defaultScreen = new GameScreen(this);
-        this.screen = this.defaultScreen;
     }
     
     // Runs once per game loop cycle, 60fps by default
     update(deltaTime: number){}
     // Runs on keyboard events to keep internal tracking accurate
-    inputEvent(input: inputEvent){
-        let {type, event} = input;
-        if(type === 'keydown'){
-            this.input[event.key] = true;
-        }
-        if(type === 'keyup'){
-            this.input[event.key] = false;
-        }
-    }
-    // Define this method to create logic surrounding key down events
-    keyDown(input: KeyboardEvent){}
-    // Define this method to create logic surrounding key up events
-    keyUp(input: KeyboardEvent){}
+    
     private loop(timestamp){
         let deltaTime: number = timestamp - this.lastRender;
         this.screen.update(deltaTime);
@@ -52,27 +37,27 @@ export class Game{
     // Initiates the game loop
     init(){
         requestAnimationFrame((timestamp)=>this.loop(timestamp/1000));
-        document.addEventListener('keydown', (e) => {
-            this.inputEvent({type: 'keydown', event: e});
-            this.keyDown(e);
-        })
-        document.addEventListener('keyup', (e) => {
-            this.inputEvent({type: 'keyup', event: e});
-            this.keyUp(e);
-        })
     }
     
     // Sets the game's screen, runs your current screens Hide() method and your new screens Show() method
     setScreen(screen: GameScreen){
-        this.screen.hide();
+        if(this.screen){this.screen.hide();}
         this.screen = screen;
         this.screen.show();
+        this.count++;
+        console.log(this.count);
     }
     
     // Draws a rectangle of a given color, position, and dimensions
     rect(color: string, x: number, y: number, width: number, height: number){
         this.ctx.fillStyle = color;
         this.ctx.fillRect(x-this.camera.offsetX, y-this.camera.offsetY, width, height);
+    }
+    // Draw text to the screen
+    text(text: string, x: number, y: number, color?: string, size?: number){
+        this.ctx.fillStyle = color || "white";
+        this.ctx.font = size+"px ariel";
+        this.ctx.fillText(text, x, y);
     }
     // Clears the screen to a given color
     clear(color?: string){
@@ -99,9 +84,4 @@ export class Game{
     
 
 
-}
-
-interface inputEvent{
-    type: string;
-    event: KeyboardEvent;
 }
