@@ -12,7 +12,7 @@ export class Game{
 
     constructor(canvas: HTMLCanvasElement) {
         this.canvas = canvas;
-        this.ctx = canvas.getContext("2d");
+        this.ctx = canvas.getContext("2d")!;
         this.lastRender = 0;
         this.canvas.height = 800;
         this.canvas.width = 800;
@@ -20,12 +20,12 @@ export class Game{
         //this.canvas.height = 768;
         this.camera = new Camera(0, 0, this);
     }
-    
+
     // Runs once per game loop cycle, 60fps by default
     update(deltaTime: number){}
     // Runs on keyboard events to keep internal tracking accurate
-    
-    private loop(timestamp){
+
+    private loop(timestamp: number){
         let deltaTime: number = timestamp - this.lastRender;
         this.screen.update(deltaTime);
 
@@ -38,7 +38,7 @@ export class Game{
     init(){
         requestAnimationFrame((timestamp)=>this.loop(timestamp/1000));
     }
-    
+
     // Sets the game's screen, runs your current screens Hide() method and your new screens Show() method
     setScreen(screen: GameScreen){
         if(this.screen){this.screen.hide();}
@@ -47,7 +47,7 @@ export class Game{
         this.count++;
         console.log(this.count);
     }
-    
+
     // Draws a rectangle of a given color, position, and dimensions
     rect(color: string, x: number, y: number, width: number, height: number){
         this.ctx.fillStyle = color;
@@ -81,7 +81,7 @@ export class Game{
             console.log("no sheet");
         }
     }
-    
+
 
 
 }
