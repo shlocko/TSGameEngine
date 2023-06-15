@@ -30,4 +30,10 @@ export class UiComponent{
             button.onrelease = onrelease;
             return button;
     }
+    setX(x: number){
+        this.position.x = x;
+    }
+    getX(){
+        return this.position.x;
+    }
 }

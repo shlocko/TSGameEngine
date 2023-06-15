@@ -2,7 +2,7 @@ import {Game} from './engine';
 
 export class GameScreen{
     game: Game;
-    input = {};
+    input: { [index: string]: boolean|undefined } = {};
 
     constructor(game: Game) {
         this.game = game;

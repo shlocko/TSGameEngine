@@ -1,15 +1,15 @@
 import { Game } from "./Game";
-import { UiComponent } from "./UiCompnent";
+import { UiComponent } from "./UiComponent";
 
 export class Ui{
     game: Game;
-    components: UiComponent[];
+    components: UiComponent[] = [];
 
     constructor(game: Game){
         this.game = game;
     }
 
-    addComponent(component: UiComponent){
+    addComponent = (component: UiComponent) => {
         this.components.push(component);
     }
     draw(){
