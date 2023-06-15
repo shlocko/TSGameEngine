@@ -1,3 +1,4 @@
+import { Ui } from "./Ui";
 import {Camera, GameScreen, Sprite, SpriteSheet} from "./engine";
 
 export class Game{
@@ -9,6 +10,7 @@ export class Game{
     screens = {};
     screen: GameScreen;
     count: number = 0;
+    ui: Ui;
 
     constructor(canvas: HTMLCanvasElement) {
         this.canvas = canvas;
@@ -19,6 +21,7 @@ export class Game{
         //this.canvas.width = 1344;
         //this.canvas.height = 768;
         this.camera = new Camera(0, 0, this);
+        this.ui = new Ui(this);
     }
 
     // Runs once per game loop cycle, 60fps by default

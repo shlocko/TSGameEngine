@@ -23,10 +23,12 @@ export class GameScreen{
         if(event.type === 'mousedown'){
             this.mouseDown(event);
             this.input["mouse"] = true;
+            this.game.ui.handleMouseDown(event);
         }
         if(event.type === 'mouseup'){
             this.mouseUp(event);
             this.input["mouse"] = false;
+            this.game.ui.handleMouseUp(event);
         }
     }
 
