@@ -1,29 +1,33 @@
 import { Position } from "./Position";
 import { Game } from "./engine";
 
-export class Ui{
+export class UiComponent{
+    game: Game;
     type: string;
     private position: Position;
     onclick: Function;
     onrelease: Function;
+    draw: Function;
     visible: boolean = true;
     color: string;
-    text: string;
 
     private constructor() {}
     // Create UI Button
-    static createButton(x: number,
-                        y: number,
-                        color: string,
-                        text: string,
-                        onclick: Function = function(){},
-                        onrelease: Function = function(){}){
-            let button = new Ui();
+    static createButton(
+        game: Game,
+        x: number,
+        y: number,
+        color: string,
+        draw: Function,
+        onclick: Function = function(){},
+        onrelease: Function = function(){}){
+            let button = new UiComponent();
+            button.game = game;
             button.position = new Position(x,y);
             button.color = color;
-            button.text = text;
+            button.draw = draw;
             button.onclick = onclick;
             button.onrelease = onrelease;
+            return button;
     }
-
 }
