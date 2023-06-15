@@ -6,7 +6,7 @@ import { TileMap } from "./TileMap";
 import { Camera } from "./Camera";
 import { Vector } from "./Vector";
 import { GameScreen } from "./GameScreen";
-import { UiComponent } from './UiComponent';
+import { UiComponent } from './UiCompnent';
 
 export {
     Game,

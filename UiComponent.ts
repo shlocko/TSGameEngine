@@ -1,5 +1,5 @@
 import { Position } from "./Position";
-import { Game } from "./engine";
+import { Game } from "./Game";
 
 export class UiComponent{
     game: Game;
